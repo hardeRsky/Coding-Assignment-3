@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMP804 - Assessment Task 3</title>
+    <style>
+        .box {
+            border: 2px dashed black;
+            background-color: rgb(31, 131, 231);
+            color: white;
+            padding: 10px;
+            margin-top: 15px;
+            width: 25%;
+        }
+
+        table.task2 {
+            line-height: 1.6;
+            width: 60%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th.task2 {
+            background-color: purple; 
+            color: gold; /
+            text-align: left;
+            font-weight: bold;
+            border-top-width: 0.5px;
+            border-left: none;
+        }
+        tr.task2{
+            margin-bottom: 5px;
+        }
+
+        tr.task2:nth-child(even) {
+            background-color: purple; 
+            color: white;
+            font: arial;
+            font-style: italic;
+        }
+
+        tr.task2:nth-child(odd) {
+            background-color: white; 
+            color: grey; 
+            font-weight: bold;
+            font: arial;
+        }
+
+        .census{
+            color: brown;
+        }
+
+        .bulletpoints{
+            list-style-type: square;
+            line-height: 1.4;
+            padding-left: 15px;
+            margin-top: 0px;
+            margin-bottom: 10px;
+        }
+
+        table.task3 {
+            width: 70%; 
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th.task3, td.task3 {
+            padding: 15px; 
+            text-align: left;
+            border: 2px solid black;
+        }
+
+        th.task3 {
+            background-color: rgb(232, 247, 176);
+            color: red;
+            text-align: center;
+            font-weight: bold;
+            border-top-width: 0.5px;
+            border-left: none;
+            border-right: none;
+        }
+        
+        colgroup {
+            font-weight: bold;
+        }
+
+        .highlighted-row {
+            background-color: white !important;
+        }
+
+        tr:task3:nth-child(even) {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:task3:nth-child(odd) {
+            background-color: #ddd;
+            color: #555;
+        }
+
+        .h11 {
+            margin-top: 20px;
+            color: rgb(158, 27, 229);
+            text-align: left;
+            font-size: 15px;
+            font: Serif;
+        }
+
+        .h12 {
+            display: inline-block;
+            margin-top: 13px;
+            margin-right: 5px;
+            color: blue;
+            text-align: left;
+            font-size: 20px;
+            font: arial;
+        }
+
+        .h13 { 
+            margin-top: 13px;
+            color: yellow;
+            text-align: left;
+            font-size: 15px;
+            font: Times;
+        }
+
+        .h14 {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            text-align: left;
+            font-size: 18px;
+            font: Tahoma, sans-serif;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .h15 {
+            margin-top: 15;
+            color: #ff5733;
+            text-align: left;
+            font-size: 20px;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.5;
+        }
+
+        h1 {
+            color: black;
+            margin-top: 5px;
+            font-size: 25px;
+            font: arial;
+            text-align: left;
+        }
+
+        button {
+            margin-right: 3px;
+        }
+
+        .button-container {
+            display: inline-block;
+        }
+
+        #lf {
+            border: 0.5px solid grey;
+            padding: 14px;
+            display: inline-block;
+            transition: border-width 0.2s;
+            width: 110px;
+            margin-top: 8px;
+            text-align: left;
+            font-size: 13px;
+            font: verdana;
+        }
+
+        .highlight-button {
+            border: 2px solid rgb(9, 137, 249);
+        }
+
+        #messages {
+            margin-top: 10px;
+        }
+
+        #catImg, #dogImg, #frogImg {
+            width: 400px; 
+            height: auto;
+        }
+        .attack-info{
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        .image-container{
+            margin-top: 15px;
+        }
+        .source-text{
+            font-size: 12px;
+        }
+
+        tr.size-colour{
+            background-color: white;
+        }
+
+     
+    </style>
+    <script>
+
+        function cat() {
+            var cat = document.getElementById("lf");
+            var messages = document.getElementById("messages");
+            var catImg = document.getElementById("catImg");
+            var dogImg = document.getElementById("dogImg");
+            var frogImg = document.getElementById("frogImg");
+
+            
+            catImg.style.display = "none";
+            dogImg.style.display = "none";
+            frogImg.style.display = "none";
+
+            cat.innerHTML = "User clicks Cat";
+
+           
+            var catMessage = document.createElement("p");
+            catMessage.innerHTML = "<b>Cat is clicked</b>";
+            messages.innerHTML = "";
+            messages.appendChild(catMessage);
+
+            
+            catImg.style.display = "block";
+            catImg.src = "cat image.jpg"; 
+
+            var catButton = document.querySelector('.cat-button');
+            highlightElement(catButton);
+        }
+
+        function dog() {
+            var dog = document.getElementById("lf");
+            var messages = document.getElementById("messages");
+            var catImg = document.getElementById("catImg");
+            var dogImg = document.getElementById("dogImg");
+            var frogImg = document.getElementById("frogImg");
+
+            
+            catImg.style.display = "none";
+            dogImg.style.display = "none";
+            frogImg.style.display = "none";
+
+            dog.innerHTML = "User clicks Dog";
+
+            
+            var dogMessage = document.createElement("p");
+            dogMessage.innerHTML = "<b>Dog is clicked</b>";
+            messages.innerHTML = "";
+            messages.appendChild(dogMessage);
+
+            
+            dogImg.style.display = "block";
+            dogImg.src = "dog image.jpg"; 
+
+            var dogButton = document.querySelector('.dog-button');
+            highlightElement(dogButton);
+        }
+
+        function frog() {
+            var frog = document.getElementById("lf");
+            var messages = document.getElementById("messages");
+            var catImg = document.getElementById("catImg");
+            var dogImg = document.getElementById("dogImg");
+            var frogImg = document.getElementById("frogImg");
+
+           
+            catImg.style.display = "none";
+            dogImg.style.display = "none";
+            frogImg.style.display = "none";
+
+            frog.innerHTML = "User clicks Frog";
+
+            
+            var frogMessage = document.createElement("p");
+            frogMessage.innerHTML = "<b>Frog is clicked</b>";
+            messages.innerHTML = "";
+            messages.appendChild(frogMessage);
+
+            
+            frogImg.style.display = "block";
+            frogImg.src = "frog image.jpg"; 
+
+           
+            var frogButton = document.querySelector('.frog-button');
+            highlightElement(frogButton);
+        }
+
+        function highlightElement(element) {
+            var buttons = document.querySelectorAll('.highlight-button');
+            buttons.forEach(btn => btn.classList.remove('highlight-button'));
+
+            if (element) {
+                element.classList.add('highlight-button');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Task 1: Use CSS to display the following information</h1>
+    <div class="box">
+        <h1 style="display: inline-block; margin: 0;" class="h11">8096983</h1>
+        <h1 style="display: inline-block; margin-left: 10px;" class="h15">Lam Hoang</h1><br>
+        <h1 class="h12" style="display: inline-block;">COMP804:</h1>
+        <h1 class="h14" style="display: inline-block; margin: 0;"> Web Security</h1>
+        <h1 class="h13">Assignment 1, due at the end of Week 5</h1>
+    </div>
+
+    <br><br>
+    
+    <h1>Task 2: Use CSS to style a table</h1>
+    
+    <table class="task2">
+        <colgroup>
+            <col style="width: 40%;">
+            <col style="width: 60%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="task2">Activity</th>
+                <th class="task2">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="task2">
+                <td>First day to enrol for re-enrolling (continuing 
+                <br> students)</td>
+                <td>20 Nov 2023</td>
+            </tr>
+            <tr class="task2">
+                <td>First day to enrol for new students 
+                <br>(commencing students)</td>
+                <td>04 Dec 2023</td>
+            </tr>
+            <tr class="task2">
+                <td>Orientation for new students (Sydney)</td>
+                <td>29 Jan 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Orientation for new students (Wollongong)</td>
+                <td>30 Jan 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Orientation for new students (Online)</td>
+                <td>31 Jan 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Lectures commence</td>
+                <td>05 Feb - 12 Apr 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Last day to enrol / add subjects yourself</td>
+                <td>16 Feb 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Last day to enrol / add subjects with Head of 
+                <br>Students approval</td>
+                <td>23 Feb 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>
+                    <b class="census">CENSUS DATE</b>
+                    <ul class="bulletpoints">
+                        <li>Fees due</li>
+                        <li>Last day to withdraw from subject/s without 
+                        <br> paying for them </li>
+                        <li>HECS / FEE HELP debt reporting date</li>
+                        <li>Last day to change HECS / FEE HELP billing option</li>
+                    </ul>
+                    <a href="https://uowedu.service-now.com/kb?id=kb_article_view&sysparm_article=KB0012659"> Learn more about Census date ></a>
+                        
+                </td>
+                <td>26 Feb 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Student Services and Amenities Fees due</td>
+                <td>27 Feb 2024</td>
+            </tr>
+            <tr class="task2">
+                <td> Last day to withdraw without academic penalty
+                <br>
+                - subject deleted from record
+                <br>
+                Fail grade recorded if subject withdrawn after 
+                <br>
+                this date
+                </td>
+                <td>15 Mar 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Study recess (1 week)</td>
+                <td>15 Apr - 19 Apr 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Exams (1 week)</td>
+                <td>20 Apr - 26 Apr 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>End of session break commences</td>
+                <td>27 Apr 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Release of results</td>
+                <td>08 May 2024</td>
+            </tr>
+            <tr class="task2">
+                <td>Supplementary and deferred exam period</td>
+                <td>14 May - 17 May 2024</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <h1>Task 3: HTML & CSS</h1>
+    <table class="task3">
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 70%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="task3">Name</th>
+                <th class="task3">Web Attacks</th>
+            </tr>
+        </thead>
+        <body>
+            <!-- Row 1: SQL Injection -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        SQL Injection 
+                        <div class="image-container">
+                            <img src="SQL Injection.jpg" height = 110 width = 110 alt="SQL Injection Image">
+                            <p class="source-text">Source: https://securitytutorials.co.uk</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of SQL Injection attack
+                    <br><br>
+                    SQL Injection, also known as sQLI, is a common attack vector that uses malicious SQL code for backend database
+                    manipulation to access information that was not intended to be displayed. This information may include any 
+                    number of items, including sensitive company data, user lists or private customer details. 
+                    <br><br>
+                    <a href="https://owasp.org/www-community/attacks/SQL_Injection">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 2: Cross-site Scripting -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Cross-Site Scripting
+                        <div class="image-container">
+                            <img src="Cross Site Scripting.png" height = 100 width = 120 alt="XSS Image">
+                            <p class="source-text">Source: https://websitesecuritystore.com/</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Cross-Site Scripting attack
+                    <br><br>
+                    Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected 
+                    into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application
+                    to send malicious code, generally in the form of a browser side script, to a different end user. 
+                    Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application
+                    uses input from a user within the output it generates without validating or encoding it.
+                    <br><br>
+                    <a href="https://owasp.org/www-community/attacks/xss/">Learn More</a>
+                </td>
+            </tr>
+            <!-- Row 3: Brute Force -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Brute Force
+                        <div class="image-container">
+                            <img src="Brute Force.png" alt="Bruteforce Image" height = 110 width = 170>
+                            <p class="source-text">Source: https://www.manageengine.com/log-management/cyber-security/what-is-brute-force-attack.html/</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Brute Force
+                    <br><br>
+                    A brute force attack is a hacking method that uses trial and error to crack passwords, login credentials, and encryption keys.
+                    It is a simple yet reliable tactic for gaining unauthorised access to individual accounts and organisations' systems and networks.
+                    The hack tries multiple usernames and passwords, often using a computer to test a wide range of combinations, until they find the 
+                    correct login information.
+                    <br><br>
+                    <a href="https://www.fortinet.com/resources/cyberglossary/brute-force-attack">Learn More</a>
+                </td>
+            </tr>
+            <!-- Row 4: Cross-Site Request Forgery -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Cross-Site Request Forgery (CSRF)
+                        <div class="image-container">
+                            <img src="CSRF.png"  height = 100 width = 120 alt="CSRF Image">
+                            <p class="source-text">Source: https://spanning.com/blog/cross-site-forgery-web-based-application-security-part-2/</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of CSRF attack
+                    <br><br>
+                    Cross-Site Request Forgery (CSRF) is an attack that forces authenticated users to submit a request to a Web application against which they are currently authenticated. 
+                    CSRF attacks exploit the trust a Web application has in an authenticated user. (Conversely, cross-site scripting (XSS) attacks exploit the trust a user has in a particular 
+                    Web application). A CSRF attack exploits a vulnerability in a Web application if it cannot differentiate between a request generated by an individual user and a request 
+                    generated by a user without their consent.
+                    <br><br>
+                    <a href="https://owasp.org/www-community/attacks/csrf">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 5: DDoS (Distributed Denial of Service) -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        DDoS (Distributed Denial of Service)
+                        <div class="image-container">
+                            <img src="DDOS.png"  height = 100 width = 120 alt="DDoS Image">
+                            <p class="source-text">Source: https://www.onelogin.com/learn/ddos-attack</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of DDoS attack
+                    <br><br>
+                    DDoS Attack means "Distributed Denial-of-Service (DDoS) Attack" and it is a cybercrime in which the attacker floods a server with internet traffic to prevent users from 
+                    accessing connected online services and sites. Motivations for carrying out a DDoS vary widely, as do the types of individuals and organizations eager to perpetrate this form of cyberattack.
+                    Some attacks are carried out by disgruntled individuals and hacktivists wanting to take down a company's servers simply to make a statement, have fun by exploiting cyber weakness, or express disapproval.
+                    <br><br>
+                    <a href="https://www.fortinet.com/resources/cyberglossary/ddos-attack#:~:text=DDoS%20Attack%20means%20%22Distributed%20Denial,connected%20online%20services%20and%20sites.">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 6: Man-in-the-Middle (MitM) -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Man-in-the-Middle (MitM)
+                        <div class="image-container">
+                            <img src="Mitm.png"  height = 100 width = 120 alt="MitM Image">
+                            <p class="source-text">Source:https://www.pandasecurity.com/en/mediacenter/man-in-the-middle-attack/</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Man-in-the-Middle attack
+                    <br><br>
+                    A man-in-the-middle (MITM) attack is a cyber attack in which a threat actor puts themselves in the middle of two parties, typically a user and an application, to intercept their communications and data exchanges
+                    and use them for malicious purposes like making unauthorized purchases or hacking.
+                    <br><br>
+                    <a href="https://www.strongdm.com/blog/man-in-the-middle-attack#:~:text=(MITM)%20Attack%3F-,A%20man%2Din%2Dthe%2Dmiddle%20(MITM)%20attack,making%20unauthorized%20purchases%20or%20hacking.">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 7: Security Misconfigurations -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Security Misconfigurations
+                        <div class="image-container">
+                            <img src="smis.png"  height = 100 width = 120 alt="Security Misconfigurations Image">
+                            <p class="source-text">Source: https://www.aquasec.com/cloud-native-academy/supply-chain-security/security-misconfigurations/</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Security Misconfigurations
+                    <br><br>
+                    A security misconfiguration occurs when system or application configuration settings are missing or are erroneously implemented, allowing unauthorized access. Common security misconfigurations can occur
+                    as a result of leaving default settings unchanged, erroneous configuration changes or other technical issues. They can occur in applications, cloud infrastructure, networks and elsewhere. Misconfigurations
+                    are widely regarded as the top cloud vulnerability.
+                    <br><br>
+                    <a href="https://www.balbix.com/insights/security-misconfiguration-impact-examples-and-prevention/#:~:text=A%20security%20misconfiguration%20occurs%20when,changes%20or%20other%20technical%20issues.">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 8: Phishing Attacks -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Phishing Attacks
+                        <div class="image-container">
+                            <img src="Phishing.png"  height = 100 width = 120 alt="Phishing Image">
+                            <p class="source-text">Source: https://www.valimail.com/guide-to-phishing/</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Phishing Attacks
+                    <br><br>
+                    Phishing is a way cyber criminals trick you into giving them personal information. They send you fraudulent emails or text messages often pretending to be from large organisations you know or trust. 
+                    They may try to steal your online banking logins, credit card details or passwords. Phishing can result in the loss of information, money or identity theft.  
+                    <br><br>
+                    <a href="https://www.cyber.gov.au/learn-basics/explore-basics/watch-out-threats/phishing-emails-and-texts">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 9: Zero-Day Exploits -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Zero-Day Exploits
+                        <div class="image-container">
+                            <img src="zero day.jpg" height = 100 width = 120 alt="Zero-Day Exploits Image">
+                            <p class="source-text">Source: https://example.com/zero-day-exploits</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Zero-Day Exploits
+                    <br><br>
+                    A zero-day exploit is a cyberattack vector that takes advantage of an unknown or unaddressed security flaw in computer software, hardware or firmware. 
+                    "Zero day" refers to the fact that the software or device vendor has zero days to fix the flaw because malicious actors can already use it to access vulnerable systems.
+                    The unknown or unaddressed vulnerability is referred to as a zero-day vulnerability or zero-day threat. A zero-day attack is when a malicious actor uses a zero-day exploit to plant malware,
+                    steal data or otherwise cause damage to users, organizations or systems.
+                    <br><br>
+                    <a href="https://www.ibm.com/topics/zero-day#:~:text=A%20zero%2Dday%20exploit%20is,it%20to%20access%20vulnerable%20systems.">Learn More</a>
+                </td>
+            </tr>
+            
+            <!-- Row 10: Clickjacking -->
+            <tr class="size-colour">
+                <td class="task3">
+                    <div class="attack-info">
+                        Clickjacking
+                        <div class="image-container">
+                            <img src="clickjacking.png" height = 100 width = 120 alt="Clickjacking Image">
+                            <p class="source-text">Source: https://www.upguard.com/blog/what-is-clickjacking</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="task3 highlighted-row">
+                    Description of Clickjacking
+                    <br><br>
+                    Clickjacking, also known as a “UI redress attack”, is when an attacker uses multiple transparent or opaque layers to trick a user into clicking on a button or link on another page when they were
+                    intending to click on the top level page. Thus, the attacker is “hijacking” clicks meant for their page and routing them to another page, most likely owned by another application, domain, or both.
+                    <br><br>
+                    <a href="https://owasp.org/www-community/attacks/Clickjacking">Learn More</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Task 4: Javascript with button</h1>
+
+    <div id="button-container">
+        <button class="cat-button" onClick="cat();">Cat</button>
+        <button class="dog-button" onClick="dog();">Dog</button>
+        <button class="frog-button" onClick="frog()">Frog </button>
+    </div>
+
+    <div id="lf"></div>
+
+    <div id="messages"></div>
+
+    <img id="catImg">
+    <img id="dogImg">
+    <img id="frogImg">
+
+    <h1>Task 5: Github repository</h1>
+</body>
+</html>
